@@ -1,11 +1,26 @@
 import React from "react";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './store';
+import './App.css';
+import RootLayout from "./pages/RootLayout";
+import HomePage from "./pages/HomePage";
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <RootLayout />,
+    children: [
+      { path: '/', element:  <HomePage />},
+
+    ],
+  },
+]);
 
 function App() {
   return (
     <Provider store={store}>
-      <div>Hello!</div>
+      <RouterProvider router={router} />
     </Provider>
   )
 }
